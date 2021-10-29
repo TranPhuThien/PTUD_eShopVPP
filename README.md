@@ -21,9 +21,14 @@
 * Microsoft.Extensions.Configuration.Json v5.0.0
 * Microsoft.AspNetCore.Identity.EntityFrameworkCore v5.0.11
 ### Note
-* Thiết kế database
-* Tạo các Entity Class
-* Cấu hình Entity với Fluent API
-* Migration database
-* Update-database
-* Thêm bảng cho ASP.NET Core Identity (Add ASP.NET Identity tables)
+1. feature/fe01:
+	* Thiết kế database
+	* Tạo các Entity Class
+	* Cấu hình Entity với Fluent API
+	* Migration database
+	* Update-database
+2. feature/fe02:
+	* Thêm bảng cho ASP.NET Core Identity (Add ASP.NET Identity tables)
+3. feature/fe03:
+	* Dựng cấu trúc tầng Application Service (Create application service layer structure)
+	* Tạo phương thức search và phân trang (Create search and paging method)
