@@ -32,3 +32,4 @@
 3. feature/fe03:
 	* Dựng cấu trúc tầng Application Service (Create application service layer structure)
 	* Tạo phương thức search và phân trang (Create search and paging method)
+* feature/update_nullable
