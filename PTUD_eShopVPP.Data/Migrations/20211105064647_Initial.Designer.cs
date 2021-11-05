@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PTUD_eShopVPP.Data.EF;
 
 namespace PTUD_eShopVPP.Data.Migrations
 {
     [DbContext(typeof(EShopVPPDbContext))]
-    partial class EShopVPPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211105064647_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -328,7 +330,7 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 11, 6, 2, 34, 5, 911, DateTimeKind.Local).AddTicks(7175));
+                        .HasDefaultValue(new DateTime(2021, 11, 5, 13, 46, 47, 202, DateTimeKind.Local).AddTicks(4802));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -431,46 +433,6 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Caption")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductInCategory", b =>
@@ -622,17 +584,6 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductImage", b =>
-                {
-                    b.HasOne("PTUD_eShopVPP.Data.Entities.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductInCategory", b =>
                 {
                     b.HasOne("PTUD_eShopVPP.Data.Entities.Category", "Category")
@@ -687,8 +638,6 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
-
-                    b.Navigation("ProductImages");
 
                     b.Navigation("ProductInCategories");
                 });

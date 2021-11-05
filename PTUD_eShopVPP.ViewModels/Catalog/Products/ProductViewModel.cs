@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PTUD_eShopVPP.Application.Catalog.Products.Dtos
+namespace PTUD_eShopVPP.ViewModels.Catalog.Products
 {
     public class ProductViewModel
     {
