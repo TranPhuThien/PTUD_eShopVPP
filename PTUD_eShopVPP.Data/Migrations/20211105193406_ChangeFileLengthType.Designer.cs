@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PTUD_eShopVPP.Data.EF;
 
 namespace PTUD_eShopVPP.Data.Migrations
 {
     [DbContext(typeof(EShopVPPDbContext))]
-    partial class EShopVPPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211105193406_ChangeFileLengthType")]
+    partial class ChangeFileLengthType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

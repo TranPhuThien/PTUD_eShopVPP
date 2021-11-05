@@ -21,5 +21,8 @@ namespace PTUD_eShopVPP.Data.Entities
         public List<OrderDetail> OrderDetails { get; set; }
 
         public List<Cart> Carts { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+        //public decimal Price { get; set; }
+        //public decimal OriginalPrice { get; set; }
     }
 }

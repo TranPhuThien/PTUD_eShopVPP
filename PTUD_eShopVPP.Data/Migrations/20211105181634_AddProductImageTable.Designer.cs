@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PTUD_eShopVPP.Data.EF;
 
 namespace PTUD_eShopVPP.Data.Migrations
 {
     [DbContext(typeof(EShopVPPDbContext))]
-    partial class EShopVPPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211105181634_AddProductImageTable")]
+    partial class AddProductImageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -328,7 +330,7 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 11, 6, 2, 34, 5, 911, DateTimeKind.Local).AddTicks(7175));
+                        .HasDefaultValue(new DateTime(2021, 11, 6, 1, 16, 34, 272, DateTimeKind.Local).AddTicks(8993));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
