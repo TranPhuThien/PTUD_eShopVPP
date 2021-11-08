@@ -6,6 +6,6 @@
 * Email: tranpthien2412@gmail.com
 ### Công nghệ
 * ASP.NET Core 3.1
-* Entity Framework Core 3.1
+* Entity Framework Core 5.0.11
 * Visual Studio 2019
 * SQL Server 2019
