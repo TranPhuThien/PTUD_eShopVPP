@@ -328,7 +328,7 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 23, 13, 10, 45, 403, DateTimeKind.Local).AddTicks(6670));
+                        .HasDefaultValue(new DateTime(2021, 11, 6, 2, 34, 5, 911, DateTimeKind.Local).AddTicks(7175));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -394,7 +394,7 @@ namespace PTUD_eShopVPP.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -406,26 +406,24 @@ namespace PTUD_eShopVPP.Data.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
                     b.Property<string>("SeoAlias")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("Stock")
+                    b.Property<int?>("Stock")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
-                    b.Property<int>("ViewCount")
+                    b.Property<int?>("ViewCount")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
@@ -433,6 +431,46 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Caption")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductInCategory", b =>
@@ -584,6 +622,17 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductImage", b =>
+                {
+                    b.HasOne("PTUD_eShopVPP.Data.Entities.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("PTUD_eShopVPP.Data.Entities.ProductInCategory", b =>
                 {
                     b.HasOne("PTUD_eShopVPP.Data.Entities.Category", "Category")
@@ -638,6 +687,8 @@ namespace PTUD_eShopVPP.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("ProductImages");
 
                     b.Navigation("ProductInCategories");
                 });

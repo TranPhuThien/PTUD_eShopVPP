@@ -1,16 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+ 
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PTUD_eShopVPP.Data\PTUD_eShopVPP.Data.csproj" />
     <ProjectReference Include="..\PTUD_eShopVPP.Utilities\PTUD_eShopVPP.Utilities.csproj" />
+    <ProjectReference Include="..\PTUD_eShopVPP.ViewModels\PTUD_eShopVPP.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
