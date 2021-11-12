@@ -7,7 +7,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PTUD_eShopVPP.ViewModels.Common;
 using PTUD_eShopVPP.ViewModels.Catalog.Products;
-using PTUD_eShopVPP.ViewModels.Catalog.Products.Public;
 
 namespace PTUD_eShopVPP.Application.Catalog.Products
 {
@@ -20,7 +19,31 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             _context = context;
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request)
+        public async Task<List<ProductViewModel>> GetAll()
+        {
+            var query = from p in _context.Products
+                            // không làm productTranSlations
+                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        join c in _context.Categories on pic.CategoryId equals c.Id
+                        select new { p, pic };
+
+            var data = await query.Select(x => new ProductViewModel()
+            {
+                Id = x.p.Id,
+                Name = x.p.Name,
+                DateCreated = (DateTime)x.p.DateCreated,
+                Description = x.p.Description,
+                Details = x.p.Details,
+                //OriginalPrice = x.p.OriginalPrice,
+                //Price = x.p.Price,
+                SeoAlias = x.p.SeoAlias,
+                Stock = (int)x.p.Stock,
+                ViewCount = (int)x.p.ViewCount
+            }).ToListAsync();
+            return data;
+        }
+
+        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
         {
             //1. Select join
             var query = from p in _context.Products

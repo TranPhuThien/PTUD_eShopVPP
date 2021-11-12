@@ -22,9 +22,12 @@
 * Microsoft.AspNetCore.Identity.EntityFrameworkCore v5.0.11
 ### Install NuGet Packages to PTUD_eShopVPP.ViewModels
 * Microsoft.AspNetCore.Http.Features v5.0.11
+* FluentValidation.AspNetCore v10.3.4
 ### Install NuGet Packages to PTUD_eShopVPP.Application
-* Microsoft.Extensions.Hosting v5.0.0
-* Microsoft.Extensions.Hosting.Abstractions v5.0.0
+
+### Install NuGet Packages to PTUD_eShopVPP.BackendAPI
+* Swashbuckle.AspNetCore v6.2.3
+* FluentValidation.AspNetCore v10.3.4
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -42,3 +45,12 @@
 	* Thêm phương thức cập nhật sản phẩm | Update product method
 	* Thêm bảng hình ảnh sản phẩm | Add product image table by migration
 	* Thêm phương thức quản lý ảnh | Manage image method API
+5. feature/fe05:
+	* Tạo Web API Project | Create Web API Project
+	* Thêm Swagger cho Web API | Add Swagger to Web API
+	* Tạo RESTful API cho Product | Create RESTful API for Product
+	* Thêm API Quản lý ảnh | Image management API
+	* Tạo API đăng nhập và đăng ký | Create login and register APIs
+	* Thêm Authorization header cho Swagger | Add Authorization to Swagger
+	* Sử dụng Fluent Validation
+	* Tạo ứng dụng Admin và thêm Template cho trang admin | Create Admin App and add Template
