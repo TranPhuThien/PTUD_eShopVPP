@@ -9,6 +9,7 @@
 * Entity Framework Core 5.0.11
 * Visual Studio 2019
 * SQL Server 2019
+* SQL Server 2019
 ### Mô hình
 * N layer (Data, Business, Presentation): Data driven design
 * Code first sử dụng Entity
@@ -28,7 +29,11 @@
 	* Migration database
 	* Update-database
 2. feature/fe02:
-	* Thêm bảng cho ASP.NET Core Identity (Add ASP.NET Identity tables)
+	* Thêm bảng cho ASP.NET Core Identity | Add ASP.NET Identity tables
 3. feature/fe03:
-	* Dựng cấu trúc tầng Application Service (Create application service layer structure)
-	* Tạo phương thức search và phân trang (Create search and paging method)
+	* Dựng cấu trúc tầng Application Service | Create application service layer structure
+	* Tạo phương thức search và phân trang | Create search and paging method
+4. feature/fe04:
+	* Phương thức cập nhật sản phẩm | Update product method
+5. feature/fe05:
+	* Thêm bảng hình ảnh sản phẩm | Add product image table by migration

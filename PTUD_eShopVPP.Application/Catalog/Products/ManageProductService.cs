@@ -15,13 +15,13 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
 {
     public class ManageProductService : IManageProductService
     {
-
         private readonly EShopVPPDbContext _context;
         public ManageProductService(EShopVPPDbContext context)
         {
             _context = context;
         }
 
+        /*----------------------------------- phần Add -----------------------------------*/
         public async Task AddViewCount(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
@@ -29,6 +29,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             await _context.SaveChangesAsync();
         }
 
+        /*----------------------------------- phần Create -----------------------------------*/
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -44,6 +45,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
+        /*----------------------------------- phần Delete -----------------------------------*/
         public async Task<int> Delete(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
@@ -52,15 +54,11 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
+        /*----------------------------------- phần Get -----------------------------------*/
         public Task<List<ProductViewModel>> GetAll()
         {
             throw new NotImplementedException();
         }
-
-        //public async Task<List<ProductViewModel>> GetAll()
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         //public async Task<PagedResult<ProductViewModel>> GetAllPaging(string keyword, int pageIndex, int pageSize)
         //{
@@ -115,19 +113,34 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             return pagedResult;
         }
 
+        /*----------------------------------- phần Update -----------------------------------*/
         public async Task<int> Update(ProductUpdateRequest request)
         {
+            var product = await _context.Products.FindAsync(request.Id);
+            // không làm productTranSlations
+            if (product == null)
+                throw new EShopVPPException($"Cannot find a product with id: {request.Id}");
+            // không làm productTranSlations
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpdatePrice(int productId, decimal newPrice)
+        {
+            //var product = await _context.Products.FindAsync(productId);
+            //// không làm productTranSlations
+            //if (product == null) throw new EShopVPPException($"Cannot find a product with id: {productId}");
+            //product.Price = newPrice;
+            //return await _context.SaveChangesAsync() > 0; // lớn là true. nhỏ hoặc bằng thì false
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdatePrice(int productId, decimal newPrice)
+        public async Task<bool> UpdateStock(int productId, int addedQuantity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateStock(int productId, int addedQuantity)
-        {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            // không làm productTranSlations
+            if (product == null) throw new EShopVPPException($"Cannot find a product with id: {productId}");
+            product.Stock += addedQuantity;
+            return await _context.SaveChangesAsync() > 0; // lớn là true. nhỏ hoặc bằng thì false
         }
     }
 }
