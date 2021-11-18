@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using PTUD_eShopVPP.Data.Enums;
+
+namespace PTUD_eShopVPP.Data.Entities
+{
+    public class Category
+    {
+        public int Id { set; get; }
+        public int SortOrder { set; get; }
+        public bool IsShowOnHome { set; get; }
+        public int? ParentId { set; get; }
+        public Status Status { set; get; }
+        public List<ProductInCategory> ProductInCategories { get; set; }
+    }
+}
