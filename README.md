@@ -13,7 +13,7 @@
 ### Mô hình
 * N layer (Data, Business, Presentation): Data driven design
 * Code first sử dụng Entity
-### Install NuGet Packages
+### Install NuGet Packages to PTUD_eShopVPP.Data
 * Microsoft.EntityFrameworkCore v5.0.11
 * Microsoft.EntityFrameworkCore.SqlServer v5.0.11
 * Microsoft.EntityFrameworkCore.Design v5.0.11
@@ -21,6 +21,11 @@
 * Microsoft.Extensions.Configuration.FileExtensions v5.0.0
 * Microsoft.Extensions.Configuration.Json v5.0.0
 * Microsoft.AspNetCore.Identity.EntityFrameworkCore v5.0.11
+### Install NuGet Packages to PTUD_eShopVPP.ViewModels
+* Microsoft.AspNetCore.Http.Features v5.0.11
+### Install NuGet Packages to PTUD_eShopVPP.Application
+* Microsoft.EntityFrameworkCore v5.0.11
+* Microsoft.AspNetCore.Http.Features v5.0.11
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -37,3 +42,5 @@
 	* Phương thức cập nhật sản phẩm | Update product method
 5. feature/fe05:
 	* Thêm bảng hình ảnh sản phẩm | Add product image table by migration
+6. feature/fe06:
+	* Phương thức quản lý ảnh | Manage image method API

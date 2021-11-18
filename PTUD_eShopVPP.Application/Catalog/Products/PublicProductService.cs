@@ -1,6 +1,6 @@
-﻿using PTUD_eShopVPP.Application.Catalog.Products.Dtos;
-using PTUD_eShopVPP.Application.Catalog.Products.Dtos.Public;
-using PTUD_eShopVPP.Application.Dtos;
+﻿using PTUD_eShopVPP.ViewModels.Common;
+using PTUD_eShopVPP.ViewModels.Catalog.Products;
+using PTUD_eShopVPP.ViewModels.Catalog.Products.Public;
 using PTUD_eShopVPP.Data.EF;
 using System;
 using System.Collections.Generic;
