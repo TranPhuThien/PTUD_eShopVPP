@@ -26,6 +26,8 @@
 ### Install NuGet Packages to PTUD_eShopVPP.Application
 * Microsoft.EntityFrameworkCore v5.0.11
 * Microsoft.AspNetCore.Http.Features v5.0.11
+### Install NuGet Packages to PTUD_eShopVPP.BackendAPI
+* Swashbuckle.AspNetCore v6.2.3
 ### Note
 1. feature/fe01:
 	* Thiết kế database

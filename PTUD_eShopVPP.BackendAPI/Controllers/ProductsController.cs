@@ -24,11 +24,11 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
 
         //http://localhost:port/product
         //[HttpGet("{languageId}")]
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var products = await _publicProductService.GetAll();
-        //    return Ok(products);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var products = await _publicProductService.GetAll();
+            return Ok(products);
+        }
     }
 }
