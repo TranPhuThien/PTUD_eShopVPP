@@ -48,3 +48,5 @@
 	* Phương thức quản lý ảnh | Manage image method API
 7. feature/fe07:
 	* Tạo web API project | Create Web API Project
+8. feature/fe08:
+	* Thêm swagger cho web API | Add Swagger web API
