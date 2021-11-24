@@ -44,3 +44,5 @@
 	* Thêm bảng hình ảnh sản phẩm | Add product image table by migration
 6. feature/fe06:
 	* Phương thức quản lý ảnh | Manage image method API
+7. feature/fe07:
+	* Tạo web API project | Create Web API Project

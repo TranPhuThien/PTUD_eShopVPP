@@ -1,5 +1,4 @@
-﻿using PTUD_eShopVPP.ViewModels.Catalog.Products.Manage;
-using PTUD_eShopVPP.ViewModels.Catalog.Products;
+﻿using PTUD_eShopVPP.ViewModels.Catalog.Products;
 using PTUD_eShopVPP.ViewModels.Common;
 using PTUD_eShopVPP.Data.EF;
 using PTUD_eShopVPP.Data.Entities;
@@ -101,7 +100,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             //1. Select join
             var query = from p in _context.Products
