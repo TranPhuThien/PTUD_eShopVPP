@@ -36,5 +36,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
         Task<ProductImageViewModel> GetImageById(int imageId);
 
         Task<List<ProductImageViewModel>> GetListImage(int productId);
+
+        Task<ProductViewModel> GetById(int productId);
     }
 }

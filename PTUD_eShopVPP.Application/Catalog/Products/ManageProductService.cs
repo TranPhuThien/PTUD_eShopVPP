@@ -67,6 +67,9 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             {
                 //Price = request.Price,
                 //OriginalPrice = request.OriginalPrice,
+                Name = request.Name,
+                Details = request.Details,
+                Description = request.Description,
                 Stock = request.Stock,
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
@@ -141,11 +144,44 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             var pagedResult = new PagedResult<ProductViewModel>()
             {
                 TotalRecord = totalRow,
-                //PageSize = request.PageSize, //cái này video sau
-                //PageIndex = request.PageIndex, //cái này video sau
+                //PageSize = request.PageSize, 
+                //PageIndex = request.PageIndex, 
                 Items = data
             };
             return pagedResult;
+        }
+
+        public async Task<ProductViewModel> GetById(int productId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            //var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId
+            //&& x.LanguageId == languageId);
+
+            var productViewModel = new ProductViewModel()
+            {
+                //Id = product.Id,
+                //DateCreated = (DateTime)product.DateCreated,
+                //Description = product.Description,
+                //Details = product.Details,
+                //Name = product.Name,
+                ////OriginalPrice = product.OriginalPrice,
+                ////Price = product.Price,
+                //SeoAlias = product.SeoAlias,
+                //Stock = (int)product.Stock,
+                //ViewCount = (int)product.ViewCount
+
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = product != null ? product.Description : null,
+                Details = product != null ? product.Details : null,
+                Name = product != null ? product.Name : null,
+                //OriginalPrice = product.OriginalPrice,
+                //Price = product.Price,
+                SeoAlias = product != null ? product.SeoAlias : null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount
+            };
+            return productViewModel;
         }
 
         public Task<ProductImageViewModel> GetImageById(int imageId)
@@ -243,5 +279,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
+
+        
     }
 }

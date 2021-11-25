@@ -18,6 +18,7 @@ namespace PTUD_eShopVPP.ViewModels.Catalog.Products
         public string Details { set; get; }
 
         public string SeoAlias { set; get; }
+
         public IFormFile ThumbnailImage { set; get; }
 
     }

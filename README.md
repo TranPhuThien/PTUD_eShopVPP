@@ -50,3 +50,5 @@
 	* Tạo web API project | Create Web API Project
 8. feature/fe08:
 	* Thêm swagger cho web API | Add Swagger web API
+9. feature/fe09:
+	* Tạo RESTful API cho Product | Create RESTful API for Product
