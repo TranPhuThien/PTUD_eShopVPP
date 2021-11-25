@@ -54,3 +54,5 @@
 	* Tạo RESTful API cho Product | Create RESTful API for Product
 10. feature/fe10:
 	* API Quản lý ảnh | Image management API
+11. feature/fe11:
+	* Tạo API đăng nhập và đăng ký | Create login and register APIs

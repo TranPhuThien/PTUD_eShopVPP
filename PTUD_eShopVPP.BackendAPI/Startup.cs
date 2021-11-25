@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +9,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PTUD_eShopVPP.Application.Catalog.Products;
 using PTUD_eShopVPP.Application.Common;
+using PTUD_eShopVPP.Application.System.Users;
 using PTUD_eShopVPP.Data.EF;
+using PTUD_eShopVPP.Data.Entities;
 using PTUD_eShopVPP.Utilities.Constants;
 using System;
 using System.Collections.Generic;
@@ -32,14 +35,18 @@ namespace PTUD_eShopVPP.BackendAPI
             services.AddDbContext<EShopVPPDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<EShopVPPDbContext>()
+                .AddDefaultTokenProviders();
+
             //declare DI
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService, ManageProductService>();
-            //services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
-            //services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
-            //services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
-            //services.AddTransient<IUserService, UserService>();
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<IUserService, UserService>();
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
             //services.AddControllersWithViews().AddFluentValidation();
