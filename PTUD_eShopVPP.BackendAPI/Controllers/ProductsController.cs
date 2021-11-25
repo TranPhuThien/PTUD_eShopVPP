@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PTUD_eShopVPP.Application.Catalog.Products;
+using PTUD_eShopVPP.ViewModels.Catalog.ProductImages;
 using PTUD_eShopVPP.ViewModels.Catalog.Products;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
         //http://localhost:port/product
         //[HttpGet("{languageId}")]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             var products = await _publicProductService.GetAll();
             return Ok(products);
@@ -72,6 +73,10 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var affectedResult = await _manageProductService.Update(request);
             if (affectedResult == 0)
                 return BadRequest();
@@ -112,58 +117,58 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
         }
 
         /*----------------------------------- phần Images -----------------------------------*/
-        //[HttpPost("{productId}/images")]
-        //public async Task<IActionResult> CreateImage(int productId, [FromForm] ProductImageCreateRequest request)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var imageId = await _manageProductService.AddImage(productId, request);
-        //    if (imageId == 0)
-        //        return BadRequest();
+        [HttpPost("{productId}/images")]
+        public async Task<IActionResult> CreateImage(int productId, [FromForm] ProductImageCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var imageId = await _manageProductService.AddImage(productId, request);
+            if (imageId == 0)
+                return BadRequest();
 
-        //    var image = await _manageProductService.GetImageById(imageId);
+            var image = await _manageProductService.GetImageById(imageId);
 
-        //    return CreatedAtAction(nameof(GetImageById), new { id = imageId }, image);
-        //}
+            return CreatedAtAction(nameof(GetImageById), new { id = imageId }, image);
+        }
 
-        //[HttpPut("{productId}/images/{imageId}")]
-        //public async Task<IActionResult> UpdateImage(int imageId, [FromForm] ProductImageUpdateRequest request)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var result = await _manageProductService.UpdateImage(imageId, request);
-        //    if (result == 0)
-        //        return BadRequest();
+        [HttpGet("{productId}/images/{imageId}")]
+        public async Task<IActionResult> GetImageById(int productId, int imageId)
+        {
+            var image = await _manageProductService.GetImageById(imageId);
+            if (image == null)
+                return BadRequest("Cannot find product");
+            return Ok(image);
+        }
 
-        //    return Ok();
-        //}
+        [HttpPut("{productId}/images/{imageId}")]
+        public async Task<IActionResult> UpdateImage(int imageId, [FromForm] ProductImageUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _manageProductService.UpdateImage(imageId, request);
+            if (result == 0)
+                return BadRequest();
 
-        //[HttpDelete("{productId}/images/{imageId}")]
-        //public async Task<IActionResult> RemoveImage(int imageId)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var result = await _manageProductService.RemoveImage(imageId);
-        //    if (result == 0)
-        //        return BadRequest();
+            return Ok();
+        }
 
-        //    return Ok();
-        //}
+        [HttpDelete("{productId}/images/{imageId}")]
+        public async Task<IActionResult> RemoveImage(int imageId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _manageProductService.RemoveImage(imageId);
+            if (result == 0)
+                return BadRequest();
 
-        //[HttpGet("{productId}/images/{imageId}")]
-        //public async Task<IActionResult> GetImageById(int productId, int imageId)
-        //{
-        //    var image = await _manageProductService.GetImageById(imageId);
-        //    if (image == null)
-        //        return BadRequest("Cannot find product");
-        //    return Ok(image);
-        //}
+            return Ok();
+        }
     }
 }
 

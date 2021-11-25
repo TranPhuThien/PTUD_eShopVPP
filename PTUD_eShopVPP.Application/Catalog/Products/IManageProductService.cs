@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PTUD_eShopVPP.ViewModels.Catalog.ProductImages;
 using PTUD_eShopVPP.ViewModels.Catalog.Products;
 using PTUD_eShopVPP.ViewModels.Common;
 using System;
@@ -23,15 +24,16 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
         Task AddViewCount(int productId);
 
         //Task<List<ProductViewModel>> GetAll();
+        // GetAllPaging lấy "PageIndex" + "PageSize" theo "Keyword" + "CategoryIds"
 
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
         // sau khi thêm product, có thễ thêm/sửa/xóa riêng ảnh
-        Task<int> AddImage(int productId, List<FormFile> files);
+        Task<int> AddImage(int productId, ProductImageCreateRequest request);
 
         Task<int> RemoveImage(int imageId);
 
-        Task<int> UpdateImage(int imageId, string caption, bool isDefault);
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
 
         Task<ProductImageViewModel> GetImageById(int imageId);
 

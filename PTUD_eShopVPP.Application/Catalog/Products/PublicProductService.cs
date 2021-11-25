@@ -77,6 +77,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
                     ViewCount = (int)x.p.ViewCount
                 }).ToListAsync();
 
+
             //4. Select and projection
             var pagedResult = new PagedResult<ProductViewModel>()
             {

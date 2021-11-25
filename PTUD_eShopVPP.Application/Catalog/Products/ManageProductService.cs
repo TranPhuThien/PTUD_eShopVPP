@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using PTUD_eShopVPP.Application.Common;
+using PTUD_eShopVPP.ViewModels.Catalog.ProductImages;
 
 namespace PTUD_eShopVPP.Application.Catalog.Products
 {
@@ -28,30 +29,30 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
         }
 
         /*----------------------------------- phần Add -----------------------------------*/
-        public Task<int> AddImage(int productId, List<FormFile> files)
-        {
-            throw new NotImplementedException();
-        }
-        //public async Task<int> AddImage(int productId, ProductImageCreateRequest request)
+        //public Task<int> AddImage(int productId, List<FormFile> files)
         //{
-        //    var productImage = new ProductImage()
-        //    {
-        //        Caption = request.Caption,
-        //        DateCreated = DateTime.Now,
-        //        IsDefault = request.IsDefault,
-        //        ProductId = productId,
-        //        SortOrder = request.SortOrder
-        //    };
-        //    // Save image
-        //    if (request.ImageFile != null)
-        //    {
-        //        productImage.ImagePath = await this.SaveFile(request.ImageFile);
-        //        productImage.FileSize = request.ImageFile.Length;
-        //    }
-        //    _context.ProductImages.Add(productImage);
-        //    await _context.SaveChangesAsync();
-        //    return productImage.Id;
+        //    throw new NotImplementedException();
         //}
+        public async Task<int> AddImage(int productId, ProductImageCreateRequest request)
+        {
+            var productImage = new ProductImage()
+            {
+                Caption = request.Caption,
+                DateCreated = DateTime.Now,
+                IsDefault = request.IsDefault,
+                ProductId = productId,
+                SortOrder = request.SortOrder
+            };
+            // Save image
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
+            _context.ProductImages.Add(productImage);
+            await _context.SaveChangesAsync();
+            return productImage.Id;
+        }
 
         public async Task AddViewCount(int productId)
         {
@@ -184,14 +185,38 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             return productViewModel;
         }
 
-        public Task<ProductImageViewModel> GetImageById(int imageId)
+        public async Task<ProductImageViewModel> GetImageById(int imageId)
         {
-            throw new NotImplementedException();
+            var image = await _context.ProductImages.FindAsync(imageId);
+            if (image == null)
+            {
+                throw new EShopVPPException($"Cannot find a Image with id: {imageId}");
+            }
+            var viewModel = new ProductImageViewModel()
+            {
+                Caption = image.Caption,
+                DateCreated = image.DateCreated,
+                FileSize = image.FileSize,
+                Id = image.Id,
+                ImagePath = image.ImagePath,
+                IsDefault = image.IsDefault,
+                ProductId = image.ProductId
+            };
+            return viewModel;
         }
 
-        public Task<List<ProductImageViewModel>> GetListImage(int productId)
+        public async Task<List<ProductImageViewModel>> GetListImage(int productId)
         {
-            throw new NotImplementedException();
+            return await _context.ProductImages.Where(x => x.ProductId == productId).Select(i => new ProductImageViewModel()
+            {
+                Caption = i.Caption,
+                DateCreated = i.DateCreated,
+                FileSize = i.FileSize,
+                Id = i.Id,
+                ImagePath = i.ImagePath,
+                IsDefault = i.IsDefault,
+                ProductId = i.ProductId
+            }).ToListAsync();
         }
 
         /*----------------------------------- phần Update -----------------------------------*/
@@ -237,9 +262,21 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             return await _context.SaveChangesAsync() > 0; // lớn là true. nhỏ hoặc bằng thì false
         }
 
-        public Task<int> UpdateImage(int imageId, string caption, bool isDefault)
+        public async Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null)
+            {
+                throw new EShopVPPException($"Cannot find an image with id {imageId}");
+            };
+            // Save image
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
+            _context.ProductImages.Update(productImage);
+            return await _context.SaveChangesAsync();
         }
 
         /*----------------------------------- phần Delete -----------------------------------*/
@@ -270,7 +307,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             _context.ProductImages.Remove(productImage);
             return await _context.SaveChangesAsync();
         }
-       
+
         /*----------------------------------- phần mở rộng -----------------------------------*/
         private async Task<string> SaveFile(IFormFile file)
         {
@@ -279,7 +316,5 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
-
-        
     }
 }

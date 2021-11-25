@@ -52,3 +52,5 @@
 	* Thêm swagger cho web API | Add Swagger web API
 9. feature/fe09:
 	* Tạo RESTful API cho Product | Create RESTful API for Product
+10. feature/fe10:
+	* API Quản lý ảnh | Image management API
