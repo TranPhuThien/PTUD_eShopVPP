@@ -28,6 +28,7 @@
 * Microsoft.AspNetCore.Http.Features v5.0.11
 ### Install NuGet Packages to PTUD_eShopVPP.BackendAPI
 * Swashbuckle.AspNetCore v6.2.3
+* Microsoft.AspNetCore.Authentication.JwtBearer v3.1.2
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -56,3 +57,5 @@
 	* API Quản lý ảnh | Image management API
 11. feature/fe11:
 	* Tạo API đăng nhập và đăng ký | Create login and register APIs
+12. feature/fe12:
+	* Thêm Authorization header cho Swagger | Add Authorization to Swagger
