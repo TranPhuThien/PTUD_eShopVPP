@@ -36,6 +36,9 @@
 * Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.1
 * Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation v3.1.2
 * FluentValidation.AspNetCore v8.6.2
+* Microsoft.IdentityModel.Logging v6.5.0
+* Microsoft.IdentityModel.Tokens v5.6.0
+* System.IdentityModel.Tokens.Jwt v5.6.0
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -73,3 +76,5 @@
 	* Dùng template SB Admin | Use template SB Admin
 15. feature/fe15:
 	* Tạo trang login và tích hợp Backend API | Login page and integrate API
+16. feature/fe16:
+	* Cookie Authentication without ASP.NET Identity
