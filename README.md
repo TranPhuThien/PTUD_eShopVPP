@@ -32,6 +32,10 @@
 * Microsoft.AspNetCore.Authentication.JwtBearer v3.1.2
 * FluentValidation.AspNetCore v8.6.2
 * Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.1
+### Install NuGet Packages to PTUD_eShopVPP.AdminApp
+* Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.1
+* Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation v3.1.2
+* FluentValidation.AspNetCore v8.6.2
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -67,3 +71,5 @@
 14. feature/fe14:
 	* Tạo ứng dụng Admin và thêm Template | Create Admin App and add Template
 	* Dùng template SB Admin | Use template SB Admin
+15. feature/fe15:
+	* Tạo trang login và tích hợp Backend API | Login page and integrate API

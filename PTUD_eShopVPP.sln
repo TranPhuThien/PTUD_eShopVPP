@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Hosts", "3. Hosts", "{F10B753B-9527-4E3D-96B1-B370C75E6904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTUD_eShopVPP.AdminApp", "PTUD_eShopVPP.AdminApp\PTUD_eShopVPP.AdminApp.csproj", "{CAF2960B-EF8F-4A8B-83D6-CBF53B60D3A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTUD_eShopVPP.AdminApp", "PTUD_eShopVPP.AdminApp\PTUD_eShopVPP.AdminApp.csproj", "{CAF2960B-EF8F-4A8B-83D6-CBF53B60D3A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
