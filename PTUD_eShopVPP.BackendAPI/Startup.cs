@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +17,7 @@ using PTUD_eShopVPP.Application.System.Users;
 using PTUD_eShopVPP.Data.EF;
 using PTUD_eShopVPP.Data.Entities;
 using PTUD_eShopVPP.Utilities.Constants;
+using PTUD_eShopVPP.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,9 +54,11 @@ namespace PTUD_eShopVPP.BackendAPI
             services.AddTransient<IUserService, UserService>();
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
-            //services.AddControllersWithViews().AddFluentValidation();
+            //services.AddControllers().AddFluentValidation();
+            //services.AddControllers();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {

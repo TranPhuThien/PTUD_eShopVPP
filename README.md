@@ -23,12 +23,15 @@
 * Microsoft.AspNetCore.Identity.EntityFrameworkCore v5.0.11
 ### Install NuGet Packages to PTUD_eShopVPP.ViewModels
 * Microsoft.AspNetCore.Http.Features v5.0.11
+* FluentValidation.AspNetCore v8.6.2
 ### Install NuGet Packages to PTUD_eShopVPP.Application
 * Microsoft.EntityFrameworkCore v5.0.11
 * Microsoft.AspNetCore.Http.Features v5.0.11
 ### Install NuGet Packages to PTUD_eShopVPP.BackendAPI
 * Swashbuckle.AspNetCore v6.2.3
 * Microsoft.AspNetCore.Authentication.JwtBearer v3.1.2
+* FluentValidation.AspNetCore v8.6.2
+* Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.1
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -59,3 +62,5 @@
 	* Tạo API đăng nhập và đăng ký | Create login and register APIs
 12. feature/fe12:
 	* Thêm Authorization header cho Swagger | Add Authorization to Swagger
+13. feature/fe13:
+	* Use Fluent Validation
