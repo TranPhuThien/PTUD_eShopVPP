@@ -64,3 +64,6 @@
 	* Thêm Authorization header cho Swagger | Add Authorization to Swagger
 13. feature/fe13:
 	* Use Fluent Validation
+14. feature/fe14:
+	* Tạo ứng dụng Admin và thêm Template | Create Admin App and add Template
+	* Dùng template SB Admin | Use template SB Admin
