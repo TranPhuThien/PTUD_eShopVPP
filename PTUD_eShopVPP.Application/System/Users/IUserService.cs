@@ -1,4 +1,5 @@
-﻿using PTUD_eShopVPP.ViewModels.System.Users;
+﻿using PTUD_eShopVPP.ViewModels.Common;
+using PTUD_eShopVPP.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,7 @@ namespace PTUD_eShopVPP.Application.System.Users
         Task<string> Authencate(LoginRequest request);
 
         Task<bool> Register(RegisterRequest request);
+
+        Task<PagedResult<UserVm>> GetUsersPaging(GetUserPagingRequest request);
     }
 }

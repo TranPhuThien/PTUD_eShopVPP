@@ -17,12 +17,12 @@ using PTUD_eShopVPP.ViewModels.Catalog.ProductImages;
 
 namespace PTUD_eShopVPP.Application.Catalog.Products
 {
-    public class ManageProductService : IManageProductService
+    public class ProductService : IProductService
     {
 
         private readonly EShopVPPDbContext _context;
         private readonly IStorageService _storageService;
-        public ManageProductService(EShopVPPDbContext context, IStorageService storageService)
+        public ProductService(EShopVPPDbContext context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
@@ -183,6 +183,52 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
                 ViewCount = product.ViewCount
             };
             return productViewModel;
+        }
+
+        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
+        {
+            //1. Select join
+            var query = from p in _context.Products
+                            // không làm productTranSlations
+                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        join c in _context.Categories on pic.CategoryId equals c.Id
+                        select new { p, pic };
+
+            //2. filter
+            if (request.CategoryId.HasValue && request.CategoryId.Value > 0)
+            {
+                query = query.Where(p => p.pic.CategoryId == request.CategoryId);
+            }
+
+            //3. Paging
+            int totalRow = await query.CountAsync();
+
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new ProductViewModel()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    DateCreated = (DateTime)x.p.DateCreated,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    //OriginalPrice = (decimal)x.p.OriginalPrice,
+                    //Price = (decimal)x.p.Price,
+                    SeoAlias = x.p.SeoAlias,
+                    Stock = (int)x.p.Stock,
+                    ViewCount = (int)x.p.ViewCount
+                }).ToListAsync();
+
+
+            //4. Select and projection
+            var pagedResult = new PagedResult<ProductViewModel>()
+            {
+                TotalRecord = totalRow,
+                //PageSize = request.PageSize, //cái này video sau
+                //PageIndex = request.PageIndex, //cái này video sau
+                Items = data
+            };
+            return pagedResult;
         }
 
         public async Task<ProductImageViewModel> GetImageById(int imageId)

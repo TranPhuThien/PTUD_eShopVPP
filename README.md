@@ -39,6 +39,7 @@
 * Microsoft.IdentityModel.Logging v6.5.0
 * Microsoft.IdentityModel.Tokens v5.6.0
 * System.IdentityModel.Tokens.Jwt v5.6.0
+* Microsoft.AspNetCore.Session v2.2.0
 ### Note
 1. feature/fe01:
 	* Thiết kế database
@@ -78,3 +79,5 @@
 	* Tạo trang login và tích hợp Backend API | Login page and integrate API
 16. feature/fe16:
 	* Cookie Authentication without ASP.NET Identity
+17. feature/fe17:
+	* Lấy danh sách user | Get user list

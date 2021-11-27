@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PTUD_eShopVPP.Application.Catalog.Products
 {
-    public interface IManageProductService
+    public interface IProductService
     {
         Task<int> Create(ProductCreateRequest request);
 
@@ -40,5 +40,7 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
         Task<List<ProductImageViewModel>> GetListImage(int productId);
 
         Task<ProductViewModel> GetById(int productId);
+
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
     }
 }
