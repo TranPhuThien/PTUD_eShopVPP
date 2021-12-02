@@ -81,3 +81,5 @@
 	* Cookie Authentication without ASP.NET Identity
 17. feature/fe17:
 	* Lấy danh sách user | Get user list
+18. feature/fe18:
+	* Tạo mới user | Create new user
