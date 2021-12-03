@@ -83,3 +83,5 @@
 	* Lấy danh sách user | Get user list
 18. feature/fe18:
 	* Tạo mới user | Create new user
+19. feature/fe19:
+	* Cập nhật user | Update exising user

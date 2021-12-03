@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PTUD_eShopVPP.ViewModels.Common
 {
-    public class PagingRequestBase : RequestBase
+    public class PagingRequestBase
     {
         public int PageIndex { get; set; }
 
