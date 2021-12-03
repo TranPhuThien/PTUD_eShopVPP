@@ -144,9 +144,9 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             //4. Select and projection
             var pagedResult = new PagedResult<ProductViewModel>()
             {
-                TotalRecord = totalRow,
-                //PageSize = request.PageSize, 
-                //PageIndex = request.PageIndex, 
+                TotalRecords = totalRow,
+                PageSize = request.PageSize,
+                PageIndex = request.PageIndex,
                 Items = data
             };
             return pagedResult;
@@ -223,9 +223,9 @@ namespace PTUD_eShopVPP.Application.Catalog.Products
             //4. Select and projection
             var pagedResult = new PagedResult<ProductViewModel>()
             {
-                TotalRecord = totalRow,
-                //PageSize = request.PageSize, //cái này video sau
-                //PageIndex = request.PageIndex, //cái này video sau
+                TotalRecords = totalRow,
+                PageSize = request.PageSize,
+                PageIndex = request.PageIndex,
                 Items = data
             };
             return pagedResult;

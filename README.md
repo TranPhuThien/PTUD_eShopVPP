@@ -85,3 +85,6 @@
 	* Tạo mới user | Create new user
 19. feature/fe19:
 	* Cập nhật user | Update exising user
+20. feature/fe20:
+	* Phân trang danh sách user | User list paging
+	* Xem chi tiết user | View user details
