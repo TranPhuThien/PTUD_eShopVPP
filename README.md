@@ -88,3 +88,5 @@
 20. feature/fe20:
 	* Phân trang danh sách user | User list paging
 	* Xem chi tiết user | View user details
+21. feature/fe21:
+	* Xóa người dùng | Delete user
