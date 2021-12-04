@@ -90,3 +90,5 @@
 	* Xem chi tiết user | View user details
 21. feature/fe21:
 	* Xóa người dùng | Delete user
+22. feature/fe22:
+	* Tìm kiếm trong danh sách user | User list filtering
