@@ -92,3 +92,5 @@
 	* Xóa người dùng | Delete user
 22. feature/fe22:
 	* Tìm kiếm trong danh sách user | User list filtering
+23. feature/fe23:
+	* Thông báo message với TempData | Alert message using TempData
