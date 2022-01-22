@@ -31,11 +31,11 @@ namespace PTUD_eShopVPP.AdminApp
             services.AddHttpClient();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-               .AddCookie(options =>
-               {
-                   options.LoginPath = "/Login/Index";
-                   options.AccessDeniedPath = "/User/Forbidden/";
-               });
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Login/Index";
+                    options.AccessDeniedPath = "/User/Forbidden/";
+                });
 
             services.AddControllersWithViews()
                      .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
@@ -44,9 +44,10 @@ namespace PTUD_eShopVPP.AdminApp
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddTransient<IUserApiClient, UserApiClient>();
+            services.AddTransient<IRoleApiClient, RoleApiClient>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -80,9 +81,7 @@ namespace PTUD_eShopVPP.AdminApp
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseSession();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

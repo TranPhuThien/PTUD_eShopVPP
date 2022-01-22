@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PTUD_eShopVPP.Application.Catalog.Products;
 using PTUD_eShopVPP.Application.Common;
+using PTUD_eShopVPP.Application.System.Roles;
 using PTUD_eShopVPP.Application.System.Users;
 using PTUD_eShopVPP.Data.EF;
 using PTUD_eShopVPP.Data.Entities;
@@ -44,24 +45,25 @@ namespace PTUD_eShopVPP.BackendAPI
                 .AddEntityFrameworkStores<EShopVPPDbContext>()
                 .AddDefaultTokenProviders();
 
-            //declare DI
+            //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
+
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
-            //services.AddControllers().AddFluentValidation();
-            //services.AddControllers();
 
             services.AddControllers()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger PTUD_eShopVPP Solution", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -102,7 +104,6 @@ namespace PTUD_eShopVPP.BackendAPI
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-
             .AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
@@ -138,7 +139,6 @@ namespace PTUD_eShopVPP.BackendAPI
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -147,7 +147,7 @@ namespace PTUD_eShopVPP.BackendAPI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger PTUD_eShopVPP Solution V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger eShopSolution V1");
             });
 
             app.UseEndpoints(endpoints =>

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace PTUD_eShopVPP.BackendAPI.Controllers
 {
+    //api/products
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
@@ -18,36 +19,25 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
     {
         private readonly IProductService _productService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(
+            IProductService productService)
         {
             _productService = productService;
         }
 
-        //http://localhost:port/product
-        //[HttpGet("{languageId}")]
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var products = await _publicProductService.GetAll();
-        //    return Ok(products);
-        //}
-
-        //http://localhost:port/products?pageIndex=1&pageSizze=10&CategoryId=
-        //http://localhost:port/product/public-paging
-        //[HttpGet("public-paging/{languageId}")]
-        [HttpGet("public-paging")]
-        public async Task<IActionResult> GetAllPaging([FromQuery] GetPublicProductPagingRequest request)
+        //http://localhost:port/products?pageIndex=1&pageSize=10&CategoryId=
+        [HttpGet("{languageId}")]
+        public async Task<IActionResult> GetAllPaging(string languageId, [FromQuery] GetPublicProductPagingRequest request)
         {
-            var products = await _productService.GetAllByCategoryId(request);
+            var products = await _productService.GetAllByCategoryId(languageId, request);
             return Ok(products);
         }
 
         //http://localhost:port/product/1
-        //[HttpGet("{id}/{languageId}")]
-        [HttpGet("{productId}")]
-        public async Task<IActionResult> GetById(int productId)
+        [HttpGet("{productId}/{languageId}")]
+        public async Task<IActionResult> GetById(int productId, string languageId)
         {
-            var product = await _productService.GetById(productId);
+            var product = await _productService.GetById(productId, languageId);
             if (product == null)
                 return BadRequest("Cannot find product");
             return Ok(product);
@@ -64,7 +54,7 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
             if (productId == 0)
                 return BadRequest();
 
-            var product = await _productService.GetById(productId);
+            var product = await _productService.GetById(productId, request.LanguageId);
 
             return CreatedAtAction(nameof(GetById), new { id = productId }, product);
         }
@@ -85,10 +75,6 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
         [HttpDelete("{productId}")]
         public async Task<IActionResult> Delete(int productId)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var affectedResult = await _productService.Delete(productId);
             if (affectedResult == 0)
                 return BadRequest();
@@ -105,7 +91,7 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
             return BadRequest();
         }
 
-        /*----------------------------------- phần Images -----------------------------------*/
+        //Images
         [HttpPost("{productId}/images")]
         public async Task<IActionResult> CreateImage(int productId, [FromForm] ProductImageCreateRequest request)
         {
@@ -120,15 +106,6 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
             var image = await _productService.GetImageById(imageId);
 
             return CreatedAtAction(nameof(GetImageById), new { id = imageId }, image);
-        }
-
-        [HttpGet("{productId}/images/{imageId}")]
-        public async Task<IActionResult> GetImageById(int productId, int imageId)
-        {
-            var image = await _productService.GetImageById(imageId);
-            if (image == null)
-                return BadRequest("Cannot find product");
-            return Ok(image);
         }
 
         [HttpPut("{productId}/images/{imageId}")]
@@ -158,6 +135,14 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet("{productId}/images/{imageId}")]
+        public async Task<IActionResult> GetImageById(int productId, int imageId)
+        {
+            var image = await _productService.GetImageById(imageId);
+            if (image == null)
+                return BadRequest("Cannot find product");
+            return Ok(image);
+        }
     }
 }
-

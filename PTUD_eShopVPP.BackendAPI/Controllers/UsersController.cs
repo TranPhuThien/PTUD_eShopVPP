@@ -12,7 +12,7 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -38,7 +38,6 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
             return Ok(result);
         }
 
-        //[HttpPost("register")]
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
@@ -47,7 +46,6 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
                 return BadRequest(ModelState);
 
             var result = await _userService.Register(request);
-
             if (!result.IsSuccessed)
             {
                 return BadRequest(result);
@@ -63,6 +61,20 @@ namespace PTUD_eShopVPP.BackendAPI.Controllers
                 return BadRequest(ModelState);
 
             var result = await _userService.Update(id, request);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("{id}/roles")]
+        public async Task<IActionResult> RoleAssign(Guid id, [FromBody] RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.RoleAssign(id, request);
             if (!result.IsSuccessed)
             {
                 return BadRequest(result);

@@ -7,7 +7,7 @@ namespace PTUD_eShopVPP.ViewModels.Catalog.Products
 {
     public class ProductUpdateRequest
     {
-        public int Id { set; get; }
+        public int Id { get; set; }
 
         public string Name { set; get; }
 
@@ -15,8 +15,14 @@ namespace PTUD_eShopVPP.ViewModels.Catalog.Products
 
         public string Details { set; get; }
 
-        public string SeoAlias { set; get; }
+        public string SeoDescription { set; get; }
 
-        public IFormFile ThumbnailImage { set; get; }
+        public string SeoTitle { set; get; }
+
+        public string SeoAlias { get; set; }
+
+        public string LanguageId { set; get; }
+
+        public IFormFile ThumbnailImage { get; set; }
     }
 }
