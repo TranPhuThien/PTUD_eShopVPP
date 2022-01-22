@@ -13,8 +13,11 @@ namespace PTUD_eShopVPP.Data.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Categories");
+
             builder.HasKey(x => x.Id);
+
             builder.Property(x => x.Id).UseIdentityColumn();
+
             builder.Property(x => x.Status).HasDefaultValue(Status.Active);
         }
     }
