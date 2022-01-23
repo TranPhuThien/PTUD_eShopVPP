@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PTUD_eShopVPP.Application.Catalog.Products;
 using PTUD_eShopVPP.Application.Common;
+using PTUD_eShopVPP.Application.System.Languages;
 using PTUD_eShopVPP.Application.System.Roles;
 using PTUD_eShopVPP.Application.System.Users;
 using PTUD_eShopVPP.Data.EF;
@@ -52,6 +53,7 @@ namespace PTUD_eShopVPP.BackendAPI
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
 

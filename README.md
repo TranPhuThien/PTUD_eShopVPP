@@ -94,3 +94,8 @@
 	* Tìm kiếm trong danh sách user | User list filtering
 23. feature/fe23:
 	* Thông báo message với TempData | Alert message using TempData
+24. feature/fe24:
+	* Gán quyền cho user | Assign role to user
+	* Fix bugs | Migration lại database
+25. feature/fe25:
+	* Cài đặt ngôn ngữ mặc định cho quản trị | Setting default language for admin

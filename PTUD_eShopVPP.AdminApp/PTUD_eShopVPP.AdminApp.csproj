@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PTUD_eShopVPP.Utilities\PTUD_eShopVPP.Utilities.csproj" />
     <ProjectReference Include="..\PTUD_eShopVPP.ViewModels\PTUD_eShopVPP.ViewModels.csproj" />
   </ItemGroup>
 
