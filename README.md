@@ -31,9 +31,9 @@
 * Swashbuckle.AspNetCore v6.2.3
 * Microsoft.AspNetCore.Authentication.JwtBearer v3.1.2
 * FluentValidation.AspNetCore v8.6.2
-* Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.1
+* Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.5
 ### Install NuGet Packages to PTUD_eShopVPP.AdminApp
-* Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.1
+* Microsoft.VisualStudio.Web.CodeGeneration.Design v3.1.5
 * Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation v3.1.2
 * FluentValidation.AspNetCore v8.6.2
 * Microsoft.IdentityModel.Logging v6.5.0
@@ -99,3 +99,9 @@
 	* Fix bugs | Migration lại database
 25. feature/fe25:
 	* Cài đặt ngôn ngữ mặc định cho quản trị | Setting default language for admin
+26. feature/fe26:
+	* Hiển thị danh sách sản phẩm
+	* Tạo mới sản phẩm
+	* Tích hợp CK Editor
+	* Filter sản phẩm
+	* Gán sản phẩm vào danh mục sản phẩm
